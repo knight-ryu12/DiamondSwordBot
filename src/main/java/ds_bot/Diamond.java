@@ -1,30 +1,22 @@
 package ds_bot;
 
-import java.io.*;
-import java.util.*;
-import java.util.Date;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.net.*;
-import java.sql.*;
+import org.pircbotx.Configuration;
+import org.pircbotx.PircBotX;
+import org.pircbotx.User;
+import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.MessageEvent;
 
-import org.pircbotx.Channel;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //import java.util.*;
 //import javax.mail.*;
 //import javax.mail.internet.*;
 //import javax.activation.*;
-
-
-import org.pircbotx.Configuration;
-import org.pircbotx.PircBotX;
-import org.pircbotx.User;
-import org.pircbotx.UserLevel;
-import org.pircbotx.hooks.ListenerAdapter;
-import org.pircbotx.hooks.events.MessageEvent;
-import org.pircbotx.hooks.types.GenericCTCPEvent;
-
-import com.google.gson.*;
 // import org.pircbotx.hooks.types.GenericMessageEvent;
 
 
@@ -38,8 +30,47 @@ public class Diamond extends ListenerAdapter {
     // Rnd Method is no longer New file.
     API API = new API();
     String[] rrmsg = {"Grab guns and fire to", "Grab Sword and behead", "Grab Magic wand and zap magic to", "Punches", "kicks", "Throws into void"};
-    Connection c = null;
-    Statement stmt = null;
+    //Connection c = null;
+    //Statement stmt = null;
+
+    public static void main(String[] args) throws Exception {
+        //Configure what we want our bot to do
+        //API API = new API();
+
+        Configuration configuration = new Configuration.Builder()
+                .setName("Ryubot") //Set the nick of the bot. CHANGE IN YOUR CODE
+                .setServerHostname("irc.esper.net")
+                .setLogin("ryubot")
+                .setRealName("Chromaryu bot!")
+                .setFinger("RyuBot Finger.")
+                        //.setServerPort(17667)
+                .setAutoNickChange(true)//Join the espernet network
+                .addAutoJoinChannel("#epic")//Join the Friends channel
+                .addListener(new Diamond()) //Add our listener that will be called on Events
+                .buildConfiguration();
+
+        //Create our bot with the configuration
+        PircBotX bot = new PircBotX(configuration);
+        //Connect to the server
+        bot.startBot();
+        // Before use bot. I need my Nickname as current. so it'll see My hostmask. never change.
+
+    }
+
+    /*public void onPrivateMessage(MessageEvent event) {
+        event.getChannel().send().message(event.getMessage().toString());
+        if(event.getMessage().startsWith("?say")) {
+            if (event.getMessage().length() >= 4) {
+                String msgsay = event.getMessage().substring(5);
+                event.getChannel().send().message(msgsay);
+            } else event.getChannel().send().message("No Parameter Given.");
+        }
+        if(event.getMessage().startsWith("?action")) {
+            if (event.getMessage().length() >= 8) {
+                String Action = event.getMessage().substring(8);
+                event.getChannel().send().action(Action);
+            } else event.getChannel().send().message("No Parameter Given.");
+        }*/
 
     /*	public int getrnduser(MessageEvent event){
             ArrayList<User> users = new ArrayList<User>();
@@ -61,10 +92,22 @@ public class Diamond extends ListenerAdapter {
         }
         if (event.getMessage().startsWith("?rnd")) {
             Random rand = new Random();
-            String rndstr = String.valueOf((int) Math.floor(Math.random() * 10));
-
+            //String rndstr = String.valueOf((int) Math.floor(Math.random() * 10));
+            String rndstr = String.valueOf(API.showRandomInteger(1, 65536));
             //String rndstr = API.rndstr();
             event.respond(rndstr);
+        }
+        if (event.getMessage().startsWith("?say")) {
+            if (event.getMessage().length() >= 4) {
+                String msgsay = event.getMessage().substring(5);
+                event.getChannel().send().message(msgsay);
+            } else event.getChannel().send().message("No Parameter Given.");
+        }
+        if (event.getMessage().startsWith("?action")) {
+            if (event.getMessage().length() >= 8) {
+                String Action = event.getMessage().substring(8);
+                event.getChannel().send().action(Action);
+            } else event.getChannel().send().message("No Parameter Given.");
         }
         if (event.getMessage().startsWith("?poke")) {
             String sender = event.getUser().getNick();
@@ -177,23 +220,20 @@ public class Diamond extends ListenerAdapter {
                 if (event.getMessage().length() >= 6) {
                     String Dir = event.getMessage().substring(6);
                     Matcher m = p.matcher(Dir);
-                    if (m.find() != true) {
-                        try {
-                            String command = Dir;
-
-                            //event.getChannel().send().message(command);
-                            Process process = Runtime.getRuntime().exec(command);
-                            BufferedReader in = new BufferedReader(new InputStreamReader(process
-                                    .getInputStream()));
-                            String line;
-                            while ((line = in.readLine()) != null) {
-                                event.getChannel().send().message(line);
-                            }
-                            in.close();
-                        } catch (IOException e) {
-                            event.getChannel().send().message("Well. you did wrong :/");
+                    if (!m.find()) try {
+                        //event.getChannel().send().message(command);
+                        Process process = Runtime.getRuntime().exec(Dir);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(process
+                                .getInputStream()));
+                        String line;
+                        while ((line = in.readLine()) != null) {
+                            event.getChannel().send().message(line);
                         }
-                    } else {
+                        in.close();
+                    } catch (IOException e) {
+                        event.getChannel().send().message("Well. you did wrong :/");
+                    }
+                    else {
                         event.getChannel().send().message("You should not do that command");
                     }
                 } else {
@@ -299,13 +339,12 @@ public class Diamond extends ListenerAdapter {
             //int randomNum = rand.nextInt((users.size() - 0) + 1) + 0;
             //event.respond(users.get(randomNum).getNick());
             //event.getChannel().send();
-            event.respond(users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "loves" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "..." + " " + "slept" + " " + "with" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + "dreams" + " " + "about" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "getting" + " " + "married" + " " + "to" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick());
+            event.respond(users.get(rand.nextInt((users.size() - 0) + 1)).getNick() + " " + "loves" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "..." + " " + "slept" + " " + "with" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + "dreams" + " " + "about" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "getting" + " " + "married" + " " + "to" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick());
         }
         if (event.getMessage().equalsIgnoreCase("?skillgen")) {
             String aCL, Gender = null, HP, Str, Con, Dex, Int, Wis, Cha;
-            int Rndnum, i;
+            int Rndnum;
             String CL[] = {"Valkyrie", "Knight", "Samurai", "Barbarian", "Caveman", "Wizard", "Rogue", "Ranger", "Monk", "Priest", "Archeologist", "Healer", "Tourist"};
-            Random random = new Random();
             Rndnum = API.showRandomInteger(1, 2);
             if (Rndnum == 1) Gender = "Male";
             if (Rndnum == 2) Gender = "Female";
@@ -333,22 +372,22 @@ public class Diamond extends ListenerAdapter {
         }
         if (event.getMessage().equalsIgnoreCase("?isOP")) {
                 	/*ArrayList<User> users = new ArrayList<User>();
-                	String sender = event.getUser().getNick();
+                    String sender = event.getUser().getNick();
                 	for(User OP : event.getChannel().getOps()){
                 		users.add(OP);
-                		
+
                 		event.getChannel().send().message(OP.toString());
                 	}
                 	event.getChannel().send().message(sender);
-                	/*boolean opuser = 
+                	/*boolean opuser =
                 	if(opuser == true) {
                 		event.getChannel().send().message("You have OP!");
                 	} else {
                 		event.getChannel().send().message("You don't have OP. yet.");
                 	}*/
                 	/*User userPrefix = event.getUser().getPrefix();
-                	ArrayList<User> users = new ArrayList<User>();
-                	if (userPrefix == "@") { 
+                    ArrayList<User> users = new ArrayList<User>();
+                	if (userPrefix == "@") {
                 		event.getChannel().send().message("You have OP!");
                 		users.add(event.getUser().getNick());
                 	}
@@ -405,35 +444,6 @@ public class Diamond extends ListenerAdapter {
 
         }
 
-
-    }
-
-    public void onGenericCTCPevent(GenericCTCPEvent event) {
-
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        //Configure what we want our bot to do
-        //API API = new API();
-
-        Configuration configuration = new Configuration.Builder()
-                .setName("Enchanted_Sword") //Set the nick of the bot. CHANGE IN YOUR CODE
-                .setServerHostname("irc.esper.net")
-                .setLogin("Sword.JVM")
-                .setRealName("Gaia_Ryubot")
-                .setFinger("RyuBot Finger.")
-                        //.setServerPort(17667)
-                .setAutoNickChange(true)//Join the freenode network
-                .addAutoJoinChannel("#Epic")//Join the official #pircbotx channel
-                .addListener(new Diamond()) //Add our listener that will be called on Events
-                .buildConfiguration();
-
-        //Create our bot with the configuration
-        PircBotX bot = new PircBotX(configuration);
-        //Connect to the server
-        bot.startBot();
-        // Before use bot. I need my Nickname as current. so it'll see My hostmask. never change.
 
     }
 }

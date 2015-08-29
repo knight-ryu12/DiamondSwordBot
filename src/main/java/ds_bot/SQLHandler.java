@@ -6,6 +6,7 @@ import java.util.Properties;
 
 /**
  * Created by ryu on 15/08/16.
+ * With Help Of CrystalMare. <- TY :)
  */
 public class SQLHandler {
 
@@ -25,6 +26,14 @@ public class SQLHandler {
         }
     }
 
+    public static void close(Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Connection open() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -33,14 +42,6 @@ public class SQLHandler {
             return null;
         }
         return DriverManager.getConnection(url, username, password);
-    }
-
-    public static void close(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getWhoami(String hostname,String Sender) {
