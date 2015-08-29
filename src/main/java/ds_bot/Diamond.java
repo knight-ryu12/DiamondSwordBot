@@ -25,6 +25,7 @@ public class Diamond extends ListenerAdapter {
 
     SQLHandler handler = new SQLHandler();
     String Version = handler.properties.getProperty("version");
+    String Server = handler.properties.getProperty("Server");
     String[] Motd = {"Hello There, How is going Everyone?", "My Pending Projects is RPG Game Project! Need More Staff (Currently I am only one :()", "If you are interested in that, Please PM me :)"};
     //API API = new API();
     // Rnd Method is no longer New file.
