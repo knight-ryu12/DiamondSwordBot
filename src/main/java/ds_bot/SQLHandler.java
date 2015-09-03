@@ -68,4 +68,46 @@ public class SQLHandler {
         return whoami;
     }
 
+    public String getCharName(String Charname) {
+        Connection connection = null;
+        String Name = "Done!";
+        try {
+            connection = open();
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT Name " +
+                            "FROM IRC_RP " +
+                            "WHERE Name = ?;"
+            );
+
+            ps.setString(1, Charname);
+            ResultSet rs = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(connection);
+        }
+        return Name;
+    }
+
+    public String setAll(String Charname, int HP, String Status) {
+        Connection connection = null;
+        String Result = "Done!";
+        try {
+            connection = open();
+            PreparedStatement ps = connection.prepareStatement(
+                    "INSERT INTO IRC_RP (Name, HP, Status)" +
+                            " VALUES (?,?,?)"
+            );
+
+            ps.setString(1, Charname);
+            ps.setInt(2, HP);
+            ps.setString(3, Status);
+            ResultSet rs = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(connection);
+        }
+        return Result;
+    }
 }
