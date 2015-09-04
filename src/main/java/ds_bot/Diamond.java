@@ -127,10 +127,10 @@ public class Diamond extends ListenerAdapter {
                 br.close();
             } catch (FileNotFoundException e) {
                 event.respond("I am dead.");
-                System.out.println(e);
+                e.printStackTrace();
             } catch (IOException e) {
                 event.respond("I am dead.");
-                System.out.println(e);
+                e.printStackTrace();
             }
 
         }
@@ -148,10 +148,10 @@ public class Diamond extends ListenerAdapter {
                 br.close();
             } catch (FileNotFoundException e) {
                 event.respond("I am dead.");
-                System.out.println(e);
+                e.printStackTrace();
             } catch (IOException e) {
                 event.respond("I am dead.");
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
         if (event.getMessage().startsWith("?@cmd")) {
@@ -212,7 +212,7 @@ public class Diamond extends ListenerAdapter {
             for (User user : event.getChannel().getUsers().asList())
                 users.add(user); //event.getChannel().send().message(users.toString());
             Random rand = new Random();
-            int randomNum = rand.nextInt((users.size() - 0) + 1) + 0;
+            int randomNum = rand.nextInt((users.size() - 0) + 1);
             event.respond(users.get(randomNum).getNick());
         }
         if (event.getMessage().equalsIgnoreCase("?easter1")) {
@@ -220,7 +220,7 @@ public class Diamond extends ListenerAdapter {
             users.remove("EdenBot_ryu");
             for (User user : event.getChannel().getUsers().asList()) users.add(user);
             Random rand = new Random();
-            event.respond(users.get(rand.nextInt((users.size() - 0) + 1)).getNick() + " " + "loves" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "..." + " " + "slept" + " " + "with" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + "dreams" + " " + "about" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "getting" + " " + "married" + " " + "to" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick());
+            event.respond(users.get(rand.nextInt((users.size()) + 1)).getNick() + " " + "loves" + " " + users.get(rand.nextInt((users.size() - 0) + 1)).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "," + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + "..." + " " + "slept" + " " + "with" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "and" + " " + "dreams" + " " + "about" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick() + " " + "getting" + " " + "married" + " " + "to" + " " + users.get(rand.nextInt((users.size() - 0) + 1) + 0).getNick());
         }
         if (event.getMessage().equalsIgnoreCase("?skillgen")) {
             String aCL, Gender = null, HP, Str, Con, Dex, Int, Wis, Cha;
@@ -270,7 +270,7 @@ public class Diamond extends ListenerAdapter {
         if (event.getMessage().startsWith("?version")) {
             event.getChannel().send().message(Version);
         }
-        if (event.getMessage().startsWith("?togglemode on")) {
+       /* if (event.getMessage().startsWith("?togglemode on")) {
             if (mode == 0) mode = 1;
             event.respond("Success!");
         }
@@ -300,7 +300,7 @@ public class Diamond extends ListenerAdapter {
                         event.getChannel().send().message("No parameter Given");
                     }
                 }
-        }
+        }*/
         if (event.getMessage().startsWith("?botcm shutdown")) {
             String senderhost = event.getUser().getHostmask();
 
