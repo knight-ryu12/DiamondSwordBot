@@ -1,4 +1,5 @@
 *.iml
 /target/
 /.idea
+/src/main/resources/diamond.properties
 /database.sql

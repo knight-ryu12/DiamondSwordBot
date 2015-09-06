@@ -103,6 +103,7 @@ public class SQLHandler {
             ps.setInt(2, HP);
             ps.setString(3, Status);
             ResultSet rs = ps.executeQuery();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
