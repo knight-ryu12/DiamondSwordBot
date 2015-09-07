@@ -81,6 +81,8 @@ public class SQLHandler {
 
             ps.setString(1, Charname);
             ResultSet rs = ps.executeQuery();
+            if (rs.next())
+                Name = rs.getString("Name");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -96,14 +98,13 @@ public class SQLHandler {
             connection = open();
             PreparedStatement ps = connection.prepareStatement(
                     "INSERT INTO IRC_RP (Name, HP, Status)" +
-                            " VALUES (?,?,?)"
+                            " VALUES (?,?,?);"
             );
 
             ps.setString(1, Charname);
             ps.setInt(2, HP);
             ps.setString(3, Status);
-            ResultSet rs = ps.executeQuery();
-
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

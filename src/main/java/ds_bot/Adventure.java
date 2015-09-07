@@ -47,11 +47,12 @@ public class Adventure extends ListenerAdapter {
                 String args = event.getMessage().substring(9);
 
                 String[] split = args.split(" ");
-                event.getChannel().send().message(split[0]);
-                event.getChannel().send().message(split[1]);
-                event.getChannel().send().message(split[2]);
+                //event.getChannel().send().message(split[0]);
+                //event.getChannel().send().message(split[1]);
+                //event.getChannel().send().message(split[2]);
                 try {
-                    handler.setAll(split[0], Integer.parseInt(split[1]), split[2]);
+                    String result = handler.setAll(split[0], Integer.parseInt(split[1]), split[2]);
+                    event.getChannel().send().message(result);
                 } catch (IllegalStateException e) {
                     event.respond("Check Argument.");
                 }
