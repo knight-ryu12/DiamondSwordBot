@@ -3,8 +3,11 @@ package ds_bot;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import javax.xml.transform.Result;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import ds_bot.SQLHandler;
 
 /**
  * Created by ryu on 15/09/06.
@@ -47,13 +50,13 @@ public class Adventure extends ListenerAdapter {
         if (event.getMessage().startsWith("?addchar")) {
             if (event.getMessage().length() >= 9) {
                 String args = event.getMessage().substring(9);
-                String Sender = event.getUser().getNick();
+                String Sender = event.getUser().getHostmask();
                 String[] split = args.split(" ");
                 //event.getChannel().send().message(split[0]);
                 //event.getChannel().send().message(split[1]);
                 //event.getChannel().send().message(split[2]);
                 try {
-                    String result = handler.setAll(split[0], Integer.parseInt(split[1]), split[2], Sender);
+                    String result = handler.setAll(split[0], Integer.parseInt(split[1]), split[2], Sender, split[3], split[4], Integer.parseInt(split[5]));
                     event.getChannel().send().message(result);
                 } catch (IllegalStateException e) {
                     event.respond("Check Argument.");
@@ -65,9 +68,9 @@ public class Adventure extends ListenerAdapter {
 
 
         }
-        if (event.getMessage().startsWith("?getchar")) {
+        if (event.getMessage().startsWith("?getcharname")) {
             //String args = event.getMessage().substring(9);
-            String Sender = event.getUser().getNick();
+            String Sender = event.getUser().getHostmask();
 
             try {
                 String result = handler.getCharName(Sender);
@@ -76,6 +79,33 @@ public class Adventure extends ListenerAdapter {
                 event.respond("Check Argument.");
                 e.printStackTrace();
             }
+        }
+        if (event.getMessage().startsWith("?addDamage")) {
+            String Sender = event.getUser().getHostmask();
+            String result = null;
+            String args = event.getMessage().substring(event.getMessage().length() + 1);
+            try {
+                result = handler.getHP(Sender);
+            } catch (IllegalStateException e) {
+                event.respond("Check Argument.");
+                e.printStackTrace();
+            }
+            int dmgvalue = Integer.parseInt(result) - Integer.parseInt(args);
+
+        }
+        if (event.getMessage().startsWith("?getstat")) {
+            String Sender = event.getUser().getHostmask();
+            handler.getstat(Sender);
+            event.getChannel().send().message(
+                    "Name: " + handler.Result[0] + " | "
+                            + " HP: " + handler.Result[1] + " | "
+                            + " Status: " + handler.Result[2] + " | "
+                            + " Weakness: " + handler.Result[3] + " | "
+                            + " Absorption: " + handler.Result[4] + " | "
+                            + " Resistence: " + handler.Result[5] + " | "
+                            + " Level: " + handler.Result[6] + " | "
+            );
+
         }
 
 
