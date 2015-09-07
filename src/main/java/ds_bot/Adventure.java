@@ -17,6 +17,7 @@ public class Adventure extends ListenerAdapter {
     public void onMessage(MessageEvent event) throws Exception {
         if (event.getMessage().startsWith("?roll")) {
             if (event.getMessage().length() >= 5) {
+                String Sender = event.getUser().getNick();
                 String args = event.getMessage().substring(6);
                 //event.getChannel().send().message(args);
                 String regex = "(\\d+)d(\\d+)([\\+-]\\d+)?$";
@@ -26,6 +27,7 @@ public class Adventure extends ListenerAdapter {
                     //event.getChannel().send().message(m.group(1));
                     //event.getChannel().send().message(m.group(2));
                     for (int i = 1; i <= Integer.parseInt(m.group(1)); i++) {
+
                         event.getChannel().send().message(String.valueOf(API.showRandomInteger(1, Integer.parseInt(m.group(2)))));
                     }
                 } catch (IllegalStateException e) {
@@ -45,13 +47,13 @@ public class Adventure extends ListenerAdapter {
         if (event.getMessage().startsWith("?addchar")) {
             if (event.getMessage().length() >= 9) {
                 String args = event.getMessage().substring(9);
-
+                String Sender = event.getUser().getNick();
                 String[] split = args.split(" ");
                 //event.getChannel().send().message(split[0]);
                 //event.getChannel().send().message(split[1]);
                 //event.getChannel().send().message(split[2]);
                 try {
-                    String result = handler.setAll(split[0], Integer.parseInt(split[1]), split[2]);
+                    String result = handler.setAll(split[0], Integer.parseInt(split[1]), split[2], Sender);
                     event.getChannel().send().message(result);
                 } catch (IllegalStateException e) {
                     event.respond("Check Argument.");
@@ -63,5 +65,21 @@ public class Adventure extends ListenerAdapter {
 
 
         }
+        if (event.getMessage().startsWith("?getchar")) {
+            //String args = event.getMessage().substring(9);
+            String Sender = event.getUser().getNick();
+
+            try {
+                String result = handler.getCharName(Sender);
+                event.getChannel().send().message(result);
+            } catch (IllegalStateException e) {
+                event.respond("Check Argument.");
+                e.printStackTrace();
+            }
+        }
+
+
     }
-}
+    }
+
+

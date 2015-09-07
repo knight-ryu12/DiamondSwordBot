@@ -1,4 +1,4 @@
-package ds_bot;
+import ds_bot.SQLHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

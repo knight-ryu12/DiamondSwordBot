@@ -24,7 +24,7 @@ public class MainRyu {
                         //.setServerPort(4321)
                         //
                         //.setAutoNickChange(true)//Join the espernet network
-                .addAutoJoinChannel("#knockturn-dev")//Join the Friends channel
+                .addAutoJoinChannel("#Creatiria")//Join the Friends channel
                 .addListener(new Diamond())
                 .addListener(new Adventure())//Add our listener that will be called on Events
                 .buildConfiguration();

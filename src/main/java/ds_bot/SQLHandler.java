@@ -70,19 +70,19 @@ public class SQLHandler {
 
     public String getCharName(String Charname) {
         Connection connection = null;
-        String Name = "Done!";
+        String Name = "Not Found. Make sure your character is made.";
         try {
             connection = open();
             PreparedStatement ps = connection.prepareStatement(
                     "SELECT Name " +
-                            "FROM IRC_RP " +
-                            "WHERE Name = ?;"
+                            "FROM IRC_RP_DB " +
+                            "WHERE IRCnick = ?;"
             );
 
             ps.setString(1, Charname);
             ResultSet rs = ps.executeQuery();
             if (rs.next())
-                Name = rs.getString("Name");
+                Name = rs.getString("IRCnick");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -91,19 +91,20 @@ public class SQLHandler {
         return Name;
     }
 
-    public String setAll(String Charname, int HP, String Status) {
+    public String setAll(String Charname, int HP, String Status, String Sender) {
         Connection connection = null;
         String Result = "Done!";
         try {
             connection = open();
             PreparedStatement ps = connection.prepareStatement(
-                    "INSERT INTO IRC_RP (Name, HP, Status)" +
-                            " VALUES (?,?,?);"
+                    "INSERT INTO IRC_RP_DB (Name, HP, Status, IRCnick) " +
+                            " VALUES (?,?,?,?);"
             );
 
             ps.setString(1, Charname);
             ps.setInt(2, HP);
             ps.setString(3, Status);
+            ps.setString(4, Sender);
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
