@@ -138,14 +138,14 @@ public class SQLHandler {
         return Name;
     }
 
-    public String setAll(String Charname, int HP, String Status, String Hostname, String Weak, String Strong, int Level) {
+    public String setAll(String Charname, int HP, String Status, String Hostname, String Weak, String Absorb, String Resist, int Level) {
         Connection connection = null;
         String Result = "Done!";
         try {
             connection = open();
             PreparedStatement ps = connection.prepareStatement(
-                    "INSERT INTO IRC_RP_DB (Name, HP, Status, IRChost, Weakness, Absoption, Level)  " +
-                            " VALUES (?,?,?,?,?,?,?);"
+                    "INSERT INTO IRC_RP_DB (Name, HP, Status, IRChost, Weakness, Absoption, Resistence,Level)  " +
+                            " VALUES (?,?,?,?,?,?,?,?);"
             );
 
             ps.setString(1, Charname);
@@ -153,8 +153,9 @@ public class SQLHandler {
             ps.setString(3, Status);
             ps.setString(4, Hostname);
             ps.setString(5, Weak);
-            ps.setString(6, Strong);
-            ps.setInt(7, Level);
+            ps.setString(6, Absorb);
+            ps.setString(7, Resist);
+            ps.setInt(8, Level);
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();

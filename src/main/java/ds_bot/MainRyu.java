@@ -2,7 +2,6 @@ package ds_bot;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
-import org.pircbotx.UtilSSLSocketFactory;
 
 /**
  * Created by ryu on 15/09/07.
@@ -15,12 +14,11 @@ public class MainRyu {
         String password = handler.properties.getProperty("Password");
         Configuration configuration = new Configuration.Builder()
                 .setName("RyuBot_RP")//Set the nick of the bot. CHANGE IN YOUR COD
-                .setServer("irc.esper.net", 6697)
+                .setServer("irc.esper.net", 6667)
                         //.addCapHandler(new SASLCapHandler("RyuBot",password))
                 .setLogin("RyuBot")
                 .setRealName("Chromaryu bot!")
                 .setFinger("RyuBot Finger.")
-                .setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
                         //.setServerPort(4321)
                         //
                         //.setAutoNickChange(true)//Join the espernet network
