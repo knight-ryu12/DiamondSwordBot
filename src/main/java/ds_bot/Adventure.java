@@ -18,7 +18,7 @@ public class Adventure extends ListenerAdapter {
         if (event.getMessage().startsWith("?roll")) {
             if (event.getMessage().length() >= 5) {
                 String Sender = event.getUser().getNick();
-                String out = null;
+                //String out = null;
                 String args = event.getMessage().substring(6);
                 StringBuffer sb = new StringBuffer();
                 //event.getChannel().send().message(args);
@@ -34,7 +34,7 @@ public class Adventure extends ListenerAdapter {
                             sb.append(" ");
                         }
                     }
-                    event.getChannel().send().message(Sender + " Rolls " + m.group(1) + "," + m.group(2) + "Sided dice, result =" + sb.toString());
+                    event.getChannel().send().message(Sender + " Rolls " + m.group(1) + "," + m.group(2) + " Sided dice, result = " + sb.toString());
                 } catch (IllegalStateException e) {
                     event.getChannel().send().message("Input string is must be Integer");
                     e.printStackTrace();
@@ -117,8 +117,25 @@ public class Adventure extends ListenerAdapter {
                                 + " Level: " + handler.Result[6] + " | "
                 );
             }
-
-
+        }
+        if (event.getMessage().startsWith("?addwhoami")) {
+            if (event.getMessage().length() >= 11) {
+                String args = event.getMessage().substring(11);
+                String Sender = event.getUser().getHostmask();
+                //String[] split = args.split(" ");
+                //event.getChannel().send().message(split[0]);
+                //event.getChannel().send().message(split[1]);
+                //event.getChannel().send().message(split[2]);
+                try {
+                    String result = handler.addwhoami(Sender, args);
+                    event.getChannel().send().message(result);
+                } catch (IllegalStateException e) {
+                    event.respond("Check Argument.");
+                }
+                event.respond("SQL Query Done.");
+            } else {
+                event.respond("Check Argument.");
+            }
         }
 
 

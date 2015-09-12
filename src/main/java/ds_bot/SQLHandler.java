@@ -51,15 +51,15 @@ public class SQLHandler {
         try {
             connection = open();
             PreparedStatement ps = connection.prepareStatement(
-                    "SELECT whoami " +
-                            "FROM irc_user " +
+                    "SELECT Msg " +
+                            "FROM irc_person " +
                             "WHERE hostname = ?;"
             );
 
             ps.setString(1, hostname);
             ResultSet rs = ps.executeQuery();
             if (rs.next())
-                whoami =  rs.getString("whoami");
+                whoami = rs.getString("Msg");
                 whoami = whoami.replace("%nick%",Sender);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,6 +165,25 @@ public class SQLHandler {
         return Result;
     }
 
+    public String addwhoami(String Hostname, String Msg) {
+        Connection connection = null;
+        String Result = "Error in my head... I got Headache...";
+        try {
+            connection = open();
+            PreparedStatement ps = connection.prepareStatement(
+                    "INSERT INTO irc_person (hostname, Msg) VALUES (?,?);"
+            );
+            ps.setString(1, Hostname);
+            ps.setString(2, Msg);
+            ps.execute();
+            Result = "Success";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(connection);
+        }
+        return Result;
+    }
     public String[] getstat(String Hostname) {
         Connection connection = null;
         //String Result[] = new String[5];
