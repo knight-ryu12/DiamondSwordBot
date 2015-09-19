@@ -1,10 +1,6 @@
 package ds_bot;
 
-import org.pircbotx.Configuration;
-import org.pircbotx.PircBotX;
 import org.pircbotx.User;
-import org.pircbotx.UtilSSLSocketFactory;
-import org.pircbotx.cap.SASLCapHandler;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -15,35 +11,23 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//import java.util.*;
-//import javax.mail.*;
-//import javax.mail.internet.*;
-//import javax.activation.*;
-// import org.pircbotx.hooks.types.GenericMessageEvent;
 
 
 public class Diamond extends ListenerAdapter {
-   //// String Version = "Diamond_Sword(EdenBot_ryu) V4.8";
-
+    //String Version = "Diamond_Sword(EdenBot_ryu) V4.8";
     SQLHandler handler = new SQLHandler();
     String Version = handler.properties.getProperty("version");
     String Server = handler.properties.getProperty("Server");
     String[] Motd = {"Hello There, How is going Everyone?", "My Pending Projects is RPG Game Project! Need More Staff (Currently I am only one :()", "If you are interested in that, Please PM me :)"};
     //API API = new API();
     // Rnd Method is no longer New file.o/
-
     API API = new API();
     String[] rrmsg = {"Grab guns and fire to", "Grab Sword and behead", "Grab Magic wand and zap magic to", "Punches", "kicks", "Throws into void"};
     //Connection c = null;
     int mode;
     //Statement stmt = null;
-
-
     @Override
-
     public void onMessage(MessageEvent event) throws Exception {
-        //When someone says ?helloworld respond with "Hello World"
-
         if (event.getMessage().startsWith("?helloworld"))
             event.respond("Hello world!");
         if (event.getMessage().startsWith("?time")) {
@@ -138,7 +122,7 @@ public class Diamond extends ListenerAdapter {
             String senderhost = event.getUser().getHostmask();
             if (senderhost.equals("j220156139067.nct9.ne.jp") || senderhost.equals("icysword.ml")) {
                 String sender = event.getUser().getNick();
-                String regex = "rm -rf *";
+                String regex = "rm * ";
                 Pattern p = Pattern.compile(regex);
                 //event.getChannel().send().message("" + Dir);
                 if (event.getMessage().length() >= 6) {
@@ -150,22 +134,14 @@ public class Diamond extends ListenerAdapter {
                         BufferedReader in = new BufferedReader(new InputStreamReader(process
                                 .getInputStream()));
                         String line;
-                        while ((line = in.readLine()) != null) {
-                            event.getChannel().send().message(line);
-                        }
+                        while ((line = in.readLine()) != null) event.getChannel().send().message(line);
                         in.close();
                     } catch (IOException e) {
                         event.getChannel().send().message("Well. you did wrong :/");
                     }
-                    else {
-                        event.getChannel().send().message("You should not do that command");
-                    }
-                } else {
-                    event.getChannel().send().message("No Parameter Given." + " " + sender);
-                }
-            } else {
-                event.getChannel().send().message("You don't have permission to do that");
-            }
+                    else event.getChannel().send().message("You should not do that command");
+                } else event.getChannel().send().message("No Parameter Given." + " " + sender);
+            } else event.getChannel().send().message("You don't have permission to do that");
         }
         if (event.getMessage().startsWith("?test1")) {
             String sender = event.getUser().getNick();
@@ -244,25 +220,19 @@ public class Diamond extends ListenerAdapter {
             String sender = event.getUser().getNick();
             event.getChannel().send().action(act + " " + sender);
         }
-        if (event.getMessage().startsWith("?o")) {
-            event.getChannel().send().message("o/");
-        }
+        if (event.getMessage().startsWith("?o")) event.getChannel().send().message("o/");
         if (event.getMessage().startsWith("?version")) {
             event.getChannel().send().message(Version);
         }
         if (event.getMessage().startsWith("?botcm shutdown")) {
             String senderhost = event.getUser().getHostmask();
-
             if (senderhost.equals("j220156139067.nct9.ne.jp") || senderhost.equals("icysword.ml") || senderhost.equals("epickitty.uk")) {
                 event.respond("Shutdown bot....");
                 System.exit(0);
             } else {
                 event.getChannel().send().message("Well, You don't have permission to stop this bot. " + "Nice Try.");
             }
-
         }
-
-
     }
 }
 

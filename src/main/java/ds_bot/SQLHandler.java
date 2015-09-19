@@ -26,7 +26,6 @@ public class SQLHandler {
             e.printStackTrace();
         }
     }
-
     public static void close(Connection connection) {
         try {
             connection.close();
@@ -68,7 +67,6 @@ public class SQLHandler {
         }
         return whoami;
     }
-
     public String getCharName(String Charname) {
         Connection connection = null;
         String Name = "Not Found. Make sure your character is made.";
@@ -91,7 +89,6 @@ public class SQLHandler {
         }
         return Name;
     }
-
     public String getHP(String Charname) {
         Connection connection = null;
         String Name = "Not Found. Make sure your character is made.";
