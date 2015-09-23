@@ -22,7 +22,7 @@ public class Diamond extends ListenerAdapter {
     //API API = new API();
     // Rnd Method is no longer New file.o/
     API API = new API();
-    String[] rrmsg = {"Grab guns and fire to", "Grab Sword and behead", "Grab Magic wand and zap magic to", "Punches", "kicks", "Throws into void"};
+    String[] rrmsg = {"Grabs guns and fire to", "Grabs Sword and behead", "Grabs Magic wand and zap magic to", "Punches", "kicks", "Throws"};
     //Connection c = null;
     int mode;
     //Statement stmt = null;
