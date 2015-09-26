@@ -158,9 +158,7 @@ public class Diamond extends ListenerAdapter {
             String cmd = event.getMessage();
             if (event.getMessage().length() >= 9) {
                 String source = cmd.substring(9);
-                //event.getChannel().send().message(" ");
-                for (String part : source.split(" "))
-                    event.getChannel().send().message(new StringBuilder(part).reverse().toString());
+                event.getChannel().send().message(new StringBuilder(source).reverse().toString());
             } else event.getChannel().send().message("test message error");
         }
         if (event.getMessage().equalsIgnoreCase("?randomuser")) {

@@ -137,8 +137,6 @@ public class Adventure extends ListenerAdapter {
                 event.respond("Check Argument.");
             }
         }
-
-
     }
     }
 
