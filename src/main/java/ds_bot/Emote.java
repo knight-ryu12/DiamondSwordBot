@@ -26,7 +26,6 @@ public class Emote extends ListenerAdapter {
         }
         if (event.getMessage().startsWith("?poke")) {
             String sender = event.getUser().getNick();
-
             if (event.getMessage().length() >= 6) {
                 String Poker = event.getMessage().substring(6);
                 if (Poker.equals("rnduser")) {
@@ -35,17 +34,23 @@ public class Emote extends ListenerAdapter {
                     Random rand = new Random();
                     int randomNum = rand.nextInt((users.size() - 0) + 1) + 0;
                     event.getChannel().send().action("pokes" + " " + users.get(randomNum).getNick());
-                } else {
-                    event.getChannel().send().action("pokes" + " " + Poker);
-                }
-            } else {
-                event.getChannel().send().message("No Parameter Given." + " " + sender);
-            }
+                } else event.getChannel().send().action("pokes" + " " + Poker);
+            } else event.getChannel().send().message("No Parameter Given." + " " + sender);
         }
-        if (event.getMessage().startsWith("?intro")) {
+        if (event.getMessage().startsWith("?intro"))
             event.getChannel().send().message("Hi all! I am Bot. Built by Chromaryu. (Also known as ryu or whatever) Thanks to PircBotX! :D");
-            //event.getChannel().send().message("Well. I need name! new Name :D just PM Dragon1 for info!");
-
+        if (event.getMessage().startsWith("?Hug")) {
+            String sender = event.getUser().getNick();
+            if (event.getMessage().length() >= 5) {
+                String Hug = event.getMessage().substring(5);
+                if (Hug.equals("rnduser")) {
+                    ArrayList<User> users = new ArrayList<User>();
+                    for (User user : event.getChannel().getUsers().asList()) users.add(user);
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt((users.size() - 0) + 1) + 0;
+                    event.getChannel().send().action("Hugs" + " " + users.get(randomNum).getNick());
+                } else event.getChannel().send().action("Hugs" + " " + Hug);
+            } else event.getChannel().send().message("No Parameter Given." + " " + sender);
         }
     }
 }
