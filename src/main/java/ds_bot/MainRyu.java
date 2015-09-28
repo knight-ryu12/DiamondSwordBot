@@ -14,19 +14,14 @@ public class MainRyu {
         SQLHandler handler = new SQLHandler();
         String password = handler.properties.getProperty("Password");
         Configuration configuration = new Configuration.Builder()
-                //.setName("")//Set the nick of the bot. CHANGE IN YOUR COD
                 .setServer("ipv4.epickitty.uk", 4321, password)
                 .setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
-                        //.addCapHandler(new SASLCapHandler("RyuBot",password))
                 .setLogin("ryu13212/Bot")
                 .setRealName("Chromaryu bot!")
                 .setFinger("RyuBot Finger.")
-                        //.setServerPort(4321)
-                        //
-                        //.setAutoNickChange(true)//Join the espernet network
-                        //.addAutoJoinChannel("#Creatiria")//Join the Friends channel
                 .addListener(new Diamond())
-                .addListener(new Adventure())//Add our listener that will be called on Events
+                .addListener(new Adventure())
+                .addListener(new Emote())//Add our listener that will be called on Events
                 .buildConfiguration();
 
         //Create our bot with the configuration
