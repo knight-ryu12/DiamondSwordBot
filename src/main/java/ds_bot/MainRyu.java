@@ -21,7 +21,8 @@ public class MainRyu {
                 .setFinger("RyuBot Finger.")
                 .addListener(new Diamond())
                 .addListener(new Adventure())
-                .addListener(new Emote())//Add our listener that will be called on Events
+                .addListener(new Emote())
+                .addListener(new CommandHandler())//Add our listener that will be called on Events
                 .buildConfiguration();
 
         //Create our bot with the configuration

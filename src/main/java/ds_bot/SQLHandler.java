@@ -67,6 +67,33 @@ public class SQLHandler {
         }
         return whoami;
     }
+
+    public int getPerm(String hostname) {
+        Connection connection = null;
+        //String whoami = "Let's see, Oh wait.. I don't know you.";
+        int Perm = 1;
+        try {
+            connection = open();
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT Perm " +
+                            "FROM irc_person " +
+                            "WHERE hostname = ?;"
+            );
+
+            ps.setString(1, hostname);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Perm = rs.getInt("Perm");
+            }
+            //whoami = whoami.replace("%nick%",Sender);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 1;
+        } finally {
+            close(connection);
+        }
+        return Perm;
+    }
     public String getCharName(String Charname) {
         Connection connection = null;
         String Name = "Not Found. Make sure your character is made.";
@@ -208,6 +235,48 @@ public class SQLHandler {
         }
         return Result;
 
+    }
+
+    public String getCommand(String CmdString) {
+        Connection con = null;
+        String Ret = "OK";
+        try {
+            con = open();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM Command WHERE CmdString = ?;"
+            );
+            ps.setString(1, CmdString);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            Result[0] = String.valueOf(rs.getInt("Active"));
+            Result[1] = String.valueOf(rs.getInt("Permission"));
+            Result[2] = rs.getString("Responce");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Ret = "NG";
+        } finally {
+            close(con);
+        }
+        return Ret;
+    }
+
+    public String addcommand(int permission, String CmdString, String Responce) {
+        Connection Connection = null;
+        try {
+            Connection = open();
+            PreparedStatement ps = Connection.prepareStatement(
+                    "INSERT INTO Command (Active, Permission, CmdString, Responce) VALUES (1,?,?,?);"
+            );
+            ps.setInt(1, permission);
+            ps.setString(2, CmdString);
+            ps.setString(3, Responce);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(Connection);
+        }
+        return "OK!";
     }
 }
 

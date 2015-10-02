@@ -11,6 +11,7 @@ import java.util.Random;
  * Created by kuroma on 15/09/28.
  */
 public class Emote extends ListenerAdapter {
+    SQLHandler handler = new SQLHandler();
     public void onMessage(MessageEvent event) throws Exception {
         if (event.getMessage().startsWith("?say")) {
             if (event.getMessage().length() >= 4) {
@@ -53,4 +54,17 @@ public class Emote extends ListenerAdapter {
             } else event.getChannel().send().message("No Parameter Given." + " " + sender);
         }
     }
+    /*public void onJoin(JoinEvent event) throws Exception {
+        String Join = event.getUser().getNick();
+        String Hostmask = event.getUser().getHostmask();
+        String Flag =handler.getWhoami(Hostmask, Join);
+        if(Flag != null) {
+            if (!Join.equals(event.getBot().getNick())) {
+                handler.addwhoami(Hostmask, "Hi there! %nick%!");
+            } else {
+
+            }
+        }
+    }*/
 }
+
