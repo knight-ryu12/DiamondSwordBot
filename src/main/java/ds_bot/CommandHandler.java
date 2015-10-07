@@ -20,7 +20,7 @@ public class CommandHandler extends ListenerAdapter {
                 event.getChannel().send().message("Argument Incorrect");
             }
         } else event.getChannel().send().message("Argument Incorrect or Not Given");
-        if (event.getMessage().startsWith("?")) {
+        /*if (event.getMessage().startsWith("?")) {
             String Cmd = event.getMessage().substring(1);
             String Error = handler.getCommand(Cmd);
             if (Error.equals("OK")) {
@@ -31,6 +31,6 @@ public class CommandHandler extends ListenerAdapter {
                     }
                 }
             }
-        }
+        }*/
     }
 }

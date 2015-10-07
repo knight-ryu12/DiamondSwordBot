@@ -29,7 +29,7 @@ public class Diamond extends ListenerAdapter {
     @Override
     public void onMessage(MessageEvent event) throws Exception {
         if (event.getMessage().startsWith("?helloworld"))
-            event.respond("Hello world!");
+            event.respond("Hello world!"); // That Command Begins all!
         if (event.getMessage().startsWith("?time")) {
             Date date = new Date();
             event.respond("Current Bot Time is" + " " + date);
