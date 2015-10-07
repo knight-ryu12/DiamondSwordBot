@@ -21,6 +21,7 @@ public class Adventure extends ListenerAdapter {
                 //String out = null;
                 String args = event.getMessage().substring(6);
                 StringBuffer sb = new StringBuffer();
+                int sum;
                 //event.getChannel().send().message(args);
                 String regex = "(\\d+)d(\\d+)([\\+-]\\d+)?$";
                 try {
@@ -28,13 +29,20 @@ public class Adventure extends ListenerAdapter {
                     m.matches();
                     //event.getChannel().send().message(m.group(1));
                     //event.getChannel().send().message(m.group(2));
-                    for (int i = 1; i <= Integer.parseInt(m.group(1)); i++) {
-                        sb.append(API.showRandomInteger(1, Integer.parseInt(m.group(2))));
-                        if (i <= Integer.parseInt(m.group(1))) {
-                            sb.append(" ");
+                    if (Integer.parseInt(m.group(2)) >= 65535) {
+                        event.getChannel().send().message("Input value must be below 65535. I don't want spam tho");
+                    } else if (Integer.parseInt(m.group(1)) >= 100) {
+                        event.getChannel().send().message("Input value must be below 100. I don't want throw Much Dice");
+                    } else {
+                        for (int i = 1; i <= Integer.parseInt(m.group(1)); i++) {
+                            sb.append(API.showRandomInteger(1, Integer.parseInt(m.group(2))));
+                            if (i <= Integer.parseInt(m.group(1))) {
+                                sb.append(" ");
+                            }
                         }
+                        event.getChannel().send().message(Sender + " Rolls " + m.group(1) + "," + m.group(2) + " Sided dice, result = " + sb.toString());
                     }
-                    event.getChannel().send().message(Sender + " Rolls " + m.group(1) + "," + m.group(2) + " Sided dice, result = " + sb.toString());
+
                 } catch (IllegalStateException e) {
                     event.getChannel().send().message("Input string is must be Integer");
                     e.printStackTrace();
@@ -132,10 +140,29 @@ public class Adventure extends ListenerAdapter {
                 } catch (IllegalStateException e) {
                     event.respond("Check Argument.");
                 }
-                event.respond("SQL Query Done.");
             } else {
                 event.respond("Check Argument.");
             }
+
+        }
+        if (event.getMessage().startsWith("?updatewhoami")) {
+            if (event.getMessage().length() >= 14) {
+                String args = event.getMessage().substring(14);
+                String Sender = event.getUser().getHostmask();
+                //String[] split = args.split(" ");
+                //event.getChannel().send().message(split[0]);
+                //event.getChannel().send().message(split[1]);
+                //event.getChannel().send().message(split[2]);
+                try {
+                    String result = handler.updatewhoami(Sender, args);
+                    event.getChannel().send().message(result);
+                } catch (IllegalStateException e) {
+                    event.respond("Check Argument.");
+                }
+            } else {
+                event.respond("Check Argument.");
+            }
+
         }
     }
     }

@@ -208,6 +208,27 @@ public class SQLHandler {
         }
         return Result;
     }
+
+    public String updatewhoami(String Hostname, String Msg) {
+        Connection connection = null;
+        String Result = "Error in my head... I got Headache...";
+        try {
+            connection = open();
+            PreparedStatement ps = connection.prepareStatement(
+                    "UPDATE irc_person SET Msg = ? WHERE hostname = ?"
+            );
+            ps.setString(2, Hostname);
+            ps.setString(1, Msg);
+            ps.execute();
+            Result = "Success";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(connection);
+        }
+        return Result;
+    }
+
     public String[] getstat(String Hostname) {
         Connection connection = null;
         //String Result[] = new String[5];
