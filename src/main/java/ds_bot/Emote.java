@@ -53,7 +53,16 @@ public class Emote extends ListenerAdapter {
                 } else event.getChannel().send().action("Hugs" + " " + Hug);
             } else event.getChannel().send().message("No Parameter Given." + " " + sender);
         }
+        if (event.getMessage().equalsIgnoreCase("?randomuser")) {
+            ArrayList<User> users = new ArrayList<User>();
+            for (User user : event.getChannel().getUsers().asList())
+                users.add(user); //event.getChannel().send().message(users.toString());
+            Random rand = new Random();
+            int randomNum = rand.nextInt((users.size() - 0) + 1);
+            event.respond(users.get(randomNum).getNick());
+        }
     }
+
     /*public void onJoin(JoinEvent event) throws Exception {
         String Join = event.getUser().getNick();
         String Hostmask = event.getUser().getHostmask();
