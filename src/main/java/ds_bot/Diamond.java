@@ -85,7 +85,7 @@ public class Diamond extends ListenerAdapter {
         }
         if (event.getMessage().startsWith("?@cmd")) {
             String senderhost = event.getUser().getHostmask();
-            if (senderhost.equals("j220156139067.nct9.ne.jp") || senderhost.equals("ArcadiaWorld.tk")) {
+            if (senderhost.equals("j220156139067.nct9.ne.jp") || senderhost.equals("ArcadiaWorld.tk") || senderhost.equals("177.138.74.70")) {
                 String sender = event.getUser().getNick();
                 String regex = "rm * ";
                 Pattern p = Pattern.compile(regex);
