@@ -1,6 +1,19 @@
-/src/main/resources/mem
-*.iml
-/target/
-/.idea
-/src/main/resources/diamond.properties
-/database.sql
+/IRC_RP_DB.sql
+/irc_person.sql
+/src/main/resources/*.*
+/*.iml
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
