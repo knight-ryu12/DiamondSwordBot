@@ -143,6 +143,14 @@ public class Diamond extends ListenerAdapter {
             String sender = event.getUser().getNick();
             event.getChannel().send().action(act + " " + sender);
         }
+        if (event.getMessage().startsWith("?@raw")) {
+            if (event.getUser().getHostmask().equals("ArcadiaWorld.tk")) {
+                if (event.getMessage().length() >= 6) {
+                    String RAW = event.getMessage().substring(6);
+                    event.getBot().sendRaw().rawLine(RAW);
+                } else event.respond("Check Arguments.");
+            } else event.respond("You are not permitted to do this action.");
+        }
         if (event.getMessage().startsWith("?o")) event.getChannel().send().message("o/");
         if (event.getMessage().startsWith("?version")) {
             event.getChannel().send().message(Version);

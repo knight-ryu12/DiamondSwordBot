@@ -12,6 +12,82 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.mojo:buildnumber-maven-plugin:maven-plugin:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-project:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-profile:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-model:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact-manager:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: backport-util-concurrent:backport-util-concurrent:3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-registry:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-interpolation:1.11" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-settings:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-core:2.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.maven.wagon:wagon-file:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-parameter-documenter:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-http-shared:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: nekohtml:xercesMinimal:1.9.6.2" level="project" />
+    <orderEntry type="library" name="Maven: nekohtml:nekohtml:1.9.6.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-http:1.0-beta-6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.jackrabbit:jackrabbit-webdav:1.5.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.jackrabbit:jackrabbit-jcr-commons:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:slf4j-nop:1.5.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:slf4j-jdk14:1.5.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.5.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.reporting:maven-reporting-api:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.doxia:doxia-sink-api:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.doxia:doxia-logging-api:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-repository-metadata:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-error-diagnostics:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-ssh-common:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-descriptor:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-interactivity-api:1.0-alpha-4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-monitor:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-ssh:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch:0.1.38" level="project" />
+    <orderEntry type="library" name="Maven: classworlds:classworlds:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-api:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-api:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-manager-plexus:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-bazaar:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-svnexe:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-gitexe:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-git-commons:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-svn-commons:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-cvsexe:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-cvs-commons:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-starteam:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-clearcase:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-perforce:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.scm:maven-scm-provider-hg:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.maven-scm-provider-svnjava:maven-scm-provider-svnjava:2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:3.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.tmatesoft.svnkit:svnkit:1.8.5" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.svnkit-trilead-ssh2:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.core:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: org.tmatesoft.sqljet:sqljet:1.1.10" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.4" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:platform:3.5.2" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.connector-factory:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.usocket-jna:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.usocket-nc:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.sshagent:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jsch.agentproxy.pageant:0.0.7" level="project" />
+    <orderEntry type="library" name="Maven: de.regnis.q.sequence:sequence-library:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.trilead:trilead-ssh2:1.0.0-build217" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.0.21" level="project" />
+    <orderEntry type="library" name="Maven: org.sonatype.plexus:plexus-sec-dispatcher:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.sonatype.plexus:plexus-cipher:1.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Maven: org.pircbotx:pircbotx:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.8" level="project" />
