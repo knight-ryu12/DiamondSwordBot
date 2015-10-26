@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import java.io.*;
 import java.net.URL;
 
 /**
@@ -15,10 +16,22 @@ public class JSONParser extends ListenerAdapter {
         if(event.getMessage().startsWith("?chuck")) {
             URL url = new URL("http://api.icndb.com/jokes/random/1");
             Object content = url.getContent();
-            event.getChannel().send().message(content.toString());
-            JsonObject jsonObject = new JsonParser().parse(content.toString()).getAsJsonObject();
-            String Chuck = jsonObject.get("joke").getAsString();
+            String Chuck = null;
+            if (content instanceof InputStream) {
+                BufferedReader bf = new BufferedReader(new InputStreamReader( (InputStream)content) );
+                String line;
+                while ((line = bf.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+            else {
+                JsonObject jsonObject = new JsonParser().parse(content.toString()).getAsJsonObject();
+                Chuck = jsonObject.get("joke").getAsString();
+            }
             event.getChannel().send().message(Chuck);
         }
+
+        }
     }
-}
+
+
