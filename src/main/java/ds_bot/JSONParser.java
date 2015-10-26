@@ -15,6 +15,7 @@ public class JSONParser extends ListenerAdapter {
         if(event.getMessage().startsWith("?chuck")) {
             URL url = new URL("http://api.icndb.com/jokes/random/1");
             Object content = url.getContent();
+            event.getChannel().send().message(content.toString());
             JsonObject jsonObject = new JsonParser().parse(content.toString()).getAsJsonObject();
             String Chuck = jsonObject.get("joke").getAsString();
             event.getChannel().send().message(Chuck);
