@@ -19,5 +19,6 @@
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.14" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.12" level="project" />
+    <orderEntry type="library" name="Maven: com.nanohttpd:nanohttpd:2.1.1" level="project" />
   </component>
 </module>
