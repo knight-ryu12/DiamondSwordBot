@@ -151,7 +151,7 @@ public class Diamond extends ListenerAdapter {
                 } else event.respond("Check Arguments.");
             } else event.respond("You are not permitted to do this action.");
         }
-        if (event.getMessage().startsWith("?o")) event.getChannel().send().message("o/");
+        if (event.getMessage().equalsIgnoreCase("?o")) event.getChannel().send().message("o/");
         if (event.getMessage().startsWith("?version")) {
             event.getChannel().send().message(Version);
         }
