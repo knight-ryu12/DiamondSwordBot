@@ -257,47 +257,22 @@ public class SQLHandler {
         return Result;
 
     }
-
-    public String getCommand(String CmdString) {
+    public String addFactoid(String Factoid, String Response) {
         Connection con = null;
-        String Ret = "OK";
         try {
             con = open();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM Command WHERE CmdString = ?;"
+                    "INSERT INTO factoid (Factoid, Responce) VALUES (?,?)"
             );
-            ps.setString(1, CmdString);
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            Result[0] = String.valueOf(rs.getInt("Active"));
-            Result[1] = String.valueOf(rs.getInt("Permission"));
-            Result[2] = rs.getString("Responce");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Ret = "NG";
-        } finally {
-            close(con);
-        }
-        return Ret;
-    }
-
-    public String addcommand(int permission, String CmdString, String Responce) {
-        Connection Connection = null;
-        try {
-            Connection = open();
-            PreparedStatement ps = Connection.prepareStatement(
-                    "INSERT INTO Command (Active, Permission, CmdString, Responce) VALUES (1,?,?,?);"
-            );
-            ps.setInt(1, permission);
-            ps.setString(2, CmdString);
-            ps.setString(3, Responce);
+            ps.setString(1,Factoid);
+            ps.setString(2,Response);
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(Connection);
+            close(con);
         }
-        return "OK!";
+        return "Done!";
     }
 }
 
