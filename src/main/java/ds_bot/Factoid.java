@@ -21,6 +21,9 @@ public class Factoid extends ListenerAdapter {
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                         event.respond("Check Augments");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        event.respond("Usage: addfactoid <factoidName> <Message> - Add factoid to Database");
                     }
                 } else event.respond("You are not able to use this command. Ask Bot Admin");
             } else event.respond("Usage: addfactoid <factoidName> <Message> - Add factoid to Database");
@@ -35,6 +38,9 @@ public class Factoid extends ListenerAdapter {
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                         event.respond("Check Augments");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        event.respond("Usage: delfactoid <facotidName> - Delete factoid from database");
                     }
                 } else event.respond("You are not able to use this command. Ask Bot Admin");
             } else event.respond("Usage: delfactoid <facotidName> - Delete factoid from database");
@@ -47,6 +53,9 @@ public class Factoid extends ListenerAdapter {
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
                     event.respond("Check Augments");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                    event.respond("Usage: factoid <facotidName> - Call factoid from database and show response");
                 }
             } else event.respond("Usage: factoid <facotidName> - Call factoid from database and show response");
         }
