@@ -274,5 +274,40 @@ public class SQLHandler {
         }
         return "Done!";
     }
+    public String Factoid(String Factoid) {
+        Connection con = null;
+        String Return = null;
+        try {
+            con = open();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT Responce FROM factoid WHERE Factoid = ?"
+            );
+            ps.setString(1,Factoid);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            Return = rs.getString("Responce");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(con);
+        }
+        return Return;
+    }
+    public String delFactoid(String Factoid) {
+        Connection con = null;
+        try {
+            con = open();
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM factoid WHERE Factoid = ?"
+            );
+            ps.setString(1,Factoid);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(con);
+        }
+        return "Done!";
+    }
 }
 

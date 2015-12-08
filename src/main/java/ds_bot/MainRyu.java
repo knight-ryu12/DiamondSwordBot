@@ -25,7 +25,7 @@ public class MainRyu{
                 .addListener(new Adventure())
                 .addListener(new Emote())
                 .addListener(new CommandHandler())
-                .addListener(new JSONParser())//Add our listener that will be called on Events
+                .addListener(new Factoid())//Add our listener that will be called on Events
                 .buildConfiguration();
 
         //Create our bot with the configuration
