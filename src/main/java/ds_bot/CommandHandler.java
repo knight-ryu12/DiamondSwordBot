@@ -7,7 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
  * Created by kuroma on 15/10/01.
  */
 public class CommandHandler extends ListenerAdapter {
-    SQLHandler handler = new SQLHandler();
+    /*SQLHandler handler = new SQLHandler();
 
     public void onMessage(MessageEvent event) throws Exception {
         if (event.getMessage().startsWith("?AddCmd")) if (event.getMessage().length() >= 8) {
@@ -20,7 +20,7 @@ public class CommandHandler extends ListenerAdapter {
                 event.getChannel().send().message("Argument Incorrect");
             }
         } else event.getChannel().send().message("Argument Incorrect or Not Given");
-        /*if (event.getMessage().startsWith("?")) {
+        f (event.getMessage().startsWith("?")) {
             String Cmd = event.getMessage().substring(1);
             String Error = handler.getCommand(Cmd);
             if (Error.equals("OK")) {
@@ -31,6 +31,6 @@ public class CommandHandler extends ListenerAdapter {
                     }
                 }
             }
-        }*/
-    }
+        }
+    }*/
 }
