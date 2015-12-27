@@ -24,6 +24,7 @@ public class MainRyu{
                 .addListener(new Diamond())
                 .addListener(new Adventure())
                 .addListener(new Emote())
+                .addListener(new Sed())
                 //.addListener(new CommandHandler())
                 .addListener(new Factoid())//Add our listener that will be called on Events
                 .buildConfiguration();
