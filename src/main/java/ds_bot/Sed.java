@@ -13,7 +13,8 @@ public class Sed {
     public void onMessage(MessageEvent event) {
         if(event.getMessage().startsWith("s/")) {
             ArrayList<Channel> chanlist = new ArrayList<Channel>();
-            for(Channel chan : event.getBot().getUserChannelDao().getAllChannels()) chanlist.add(chan);
+            for(Channel chan : event.getBot().getUserChannelDao().getAllChannels().asList()) chanlist.add(chan);
+            event.respond(chanlist.get(0).getName());
 
 
         }
