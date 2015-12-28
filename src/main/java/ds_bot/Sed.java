@@ -20,7 +20,7 @@ public class Sed extends ListenerAdapter{
         int test;
         if(event.getMessage().startsWith("?test4")) {
             test = 0;
-        while(!chanlist.contains(event.getChannel())){
+        while(!event.getChannel().equals(chanlist.get(test))){
             test++;
         }
             event.respond("You are talking at" + " " + chanlist.get(test).getName() +".");
