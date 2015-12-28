@@ -89,9 +89,9 @@ public class Diamond extends ListenerAdapter {
             event.getUser().send().notice(Motd[1]);
             event.getUser().send().notice(Motd[2]);
         }
-        if (event.getMessage().startsWith("?test2")) {
-            event.respond(event.getBot().getUserChannelDao().getAllChannels().toString());
-        }
+        //if (event.getMessage().startsWith("?test2")) {
+        //    event.respond(event.getBot().getUserChannelDao().getAllChannels());
+        //}
         if (event.getMessage().startsWith("?whoami")) {
             String senderhost = event.getUser().getHostmask();
             String Sender = event.getUser().getNick();
