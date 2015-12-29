@@ -53,7 +53,7 @@ public class Sed extends ListenerAdapter{
         }
         try {
             oldmessage.set(test, event.getMessage());
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             oldmessage.add(test, event.getMessage());
         }
         //for(User user : event.getChannel().getUsers().asList()) userlist.add(user);
