@@ -37,6 +37,7 @@ public class Sed extends ListenerAdapter{
             String line;
             while ((line = in.readLine()) != null) event.getChannel().send().message(line);
             in.close();
+            satisfied = event.getMessage();
         }
         for(Channel chan : event.getBot().getUserChannelDao().getAllChannels().asList()) chanlist.add(chan);
         // passive get old message. and old user too.
