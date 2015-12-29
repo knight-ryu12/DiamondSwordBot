@@ -3,6 +3,7 @@ package ds_bot;
 import org.pircbotx.Channel;
 import org.pircbotx.User;
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import java.io.BufferedReader;
@@ -22,7 +23,14 @@ public class Sed extends ListenerAdapter{
     int test;
     int channel;
     String satisfied;
+    public void onJoin(JoinEvent event) throws Exception {
+        String Join = event.getUser().getNick();
+            if (Join.equals(event.getBot().getNick())) {
+                for(Channel chan : event.getBot().getUserChannelDao().getAllChannels().asList()) chanlist.add(chan);
+            }
+    }
     public void onMessage(MessageEvent event) throws IOException {
+
         test = 0;
         if(event.getMessage().startsWith("s/")) {
             while(!event.getChannel().equals(chanlist.get(test))){
@@ -39,7 +47,6 @@ public class Sed extends ListenerAdapter{
             in.close();
             //satisfied = event.getMessage();
         }
-        for(Channel chan : event.getBot().getUserChannelDao().getAllChannels().asList()) chanlist.add(chan);
         // passive get old message. and old user too.
         while(!event.getChannel().equals(chanlist.get(test))){
             test++;
