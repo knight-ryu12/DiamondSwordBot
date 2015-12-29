@@ -16,13 +16,14 @@ import java.util.ArrayList;
  */
 public class Sed extends ListenerAdapter{
     ArrayList<Channel> chanlist = new ArrayList<Channel>();
-    ArrayList<User> userlist = new ArrayList<User>();
+    //ArrayList<User> userlist = new ArrayList<User>();
     ArrayList<String> oldmessage = new ArrayList<String>();
-    String oldmessagebuffer;
-    String oldmessagechannel;
+    //String oldmessagebuffer;
+    //String oldmessagechannel;
     int test;
     int channel;
     String satisfied;
+    @Override
     public void onJoin(JoinEvent event) throws Exception {
         String Join = event.getUser().getNick();
             if (Join.equals(event.getBot().getNick())) {
@@ -30,7 +31,6 @@ public class Sed extends ListenerAdapter{
             }
     }
     public void onMessage(MessageEvent event) throws IOException {
-
         test = 0;
         if(event.getMessage().startsWith("s/")) {
             while(!event.getChannel().equals(chanlist.get(test))){
@@ -51,7 +51,11 @@ public class Sed extends ListenerAdapter{
         while(!event.getChannel().equals(chanlist.get(test))){
             test++;
         }
-        oldmessage.set(test, event.getMessage());
+        try {
+            oldmessage.set(test, event.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            oldmessage.add(test, event.getMessage());
+        }
         //for(User user : event.getChannel().getUsers().asList()) userlist.add(user);
     }
 }
