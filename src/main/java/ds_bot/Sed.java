@@ -15,14 +15,14 @@ import java.util.ArrayList;
  * Created by chroma on 15/12/25.
  */
 public class Sed extends ListenerAdapter{
-    ArrayList<Channel> chanlist = new ArrayList<Channel>();
+    ArrayList<Channel> chanlist = new ArrayList<Channel>(100);
     //ArrayList<User> userlist = new ArrayList<User>();
-    ArrayList<String> oldmessage = new ArrayList<String>();
+    ArrayList<String> oldmessage = new ArrayList<String>(1000);
     //String oldmessagebuffer;
     //String oldmessagechannel;
     int test;
     int channel;
-    String satisfied;
+    //String satisfied;
     @Override
     public void onJoin(JoinEvent event) throws Exception {
         String Join = event.getUser().getNick();
@@ -38,7 +38,7 @@ public class Sed extends ListenerAdapter{
             }
             // chanlist.get(test).getName() for getting channel whatever IRC ppl do this command.
             //event.respond("You are talking at" + " " + chanlist.get(test).getName() +".");
-            String[] commandString = {"/bin/bash","-c","echo",oldmessage.get(channel).toString()," | "," sed "," -e "," '",event.getMessage(),"'"};
+            String[] commandString = {"/bin/bash","-c","echo",oldmessage.get(channel).toString()," | ","sed","-e","'",event.getMessage(),"'"};
             Process process = Runtime.getRuntime().exec(commandString);
             BufferedReader in = new BufferedReader(new InputStreamReader(process
                     .getInputStream()));
@@ -51,11 +51,8 @@ public class Sed extends ListenerAdapter{
         while(!event.getChannel().equals(chanlist.get(test))){
             test++;
         }
-        try {
+
             oldmessage.set(test, event.getMessage());
-        } catch (IndexOutOfBoundsException e) {
-            oldmessage.add(test, event.getMessage());
-        }
         //for(User user : event.getChannel().getUsers().asList()) userlist.add(user);
     }
 }

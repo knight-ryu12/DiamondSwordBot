@@ -61,6 +61,9 @@ public class Emote extends ListenerAdapter {
             int randomNum = rand.nextInt((users.size() - 0) + 1);
             event.respond(users.get(randomNum).getNick());
         }
+        if(event.getMessage().startsWith("?gitgud")) {
+            event.getChannel().send().message(event.getUser().getNick() + " got gud!");
+        }
     }
 
     /*public void onJoin(JoinEvent event) throws Exception {
